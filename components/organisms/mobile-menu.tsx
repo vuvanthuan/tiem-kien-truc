@@ -15,9 +15,9 @@ import {
 } from "@/components/molecules/accordion";
 
 import { cn } from "@/lib/utils/tw-merge";
-import { MenuWebsite } from "@/lib/types/menu";
+import { IMenuWebsite } from "@/lib/types/menu";
 
-export const MobileMenu = ({ menu }: { menu: MenuWebsite[] }) => {
+export const MobileMenu = ({ menu }: { menu: IMenuWebsite[] }) => {
   const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
 

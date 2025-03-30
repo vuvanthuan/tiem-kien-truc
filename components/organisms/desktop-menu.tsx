@@ -13,9 +13,9 @@ import {
     navigationMenuTriggerStyle
 } from "@/components/molecules/navigation-menu"
 
-import { MenuWebsite } from "@/lib/types/menu";
+import { IMenuWebsite } from "@/lib/types/menu";
 
-export const DesktopMenu = ({ menu }: { menu: MenuWebsite[] }) => {
+export const DesktopMenu = ({ menu }: { menu: IMenuWebsite[] }) => {
     return (
         <NavigationMenu>
             <NavigationMenuList>
@@ -34,7 +34,7 @@ export const DesktopMenu = ({ menu }: { menu: MenuWebsite[] }) => {
                                                             <HorizontalListItem
                                                                 title={child.label}
                                                                 href={`/${item.value}/${child.value}`}
-                                                                className="font-medium border-b pb-2 mb-2"
+                                                                className="pb-2 mb-2 font-medium border-b"
                                                             />
                                                             <div className="flex flex-col gap-1 pl-2">
                                                                 {child.children.map((subChild) => (

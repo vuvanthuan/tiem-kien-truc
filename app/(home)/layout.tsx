@@ -74,14 +74,12 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default async function RootLayout({
     children,
-    params: { locale }
 }: Readonly<{
     children: React.ReactNode
-    params: { locale: string }
 }>) {
     return (
         <ViewTransitions>
-            <html lang={locale} suppressHydrationWarning>
+            <html lang="vi" suppressHydrationWarning>
                 <link rel="preconnect" href="https://fonts.googleapis.com" />
                 <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
                 <link rel="apple-touch-icon" href="/logo-circle.png" sizes="180x180" />

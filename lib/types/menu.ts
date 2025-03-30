@@ -1,5 +1,5 @@
-export type MenuWebsite = {
+export type IMenuWebsite = {
     label: string;
     value: string;
-    children?: MenuWebsite[];
+    children?: IMenuWebsite[];
 };

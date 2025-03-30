@@ -1,10 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { MenuItem } from '@/lib/types/menu';
+import { IMenuWebsite } from '@/lib/types/menu';
 import { initMenu } from '@/public/mocks/menu';
 
 export interface IDefaultState {
-    menu: MenuItem[];
+    menu: IMenuWebsite[];
 }
 
 const initialState: IDefaultState = {
