@@ -30,24 +30,24 @@ const InformationFooter = ({ title, info }: Props) => {
 const Footer = () => {
 
     return (
-        <section className='w-full bg-slate-200 text-black'>
-            <div className='flex-col-between-center gap-10 p-4 md:px-12 md:py-6 lg:px-24 lg:py-12'>
-                <div className='pb-4 gap-4 md:gap-0 flex flex-col lg:flex-row w-full grid-cols-1 justify-start items-start md:justify-between md:items-center border-b-2 border-b-slate-300'>
-                    <div className='flex justify-start items-center gap-2'>
+        <section className='w-full text-black bg-slate-200'>
+            <div className='gap-10 p-4 flex-col-between-center md:px-12 md:py-6 lg:px-24 lg:py-12'>
+                <div className='flex flex-col items-start justify-start w-full grid-cols-1 gap-4 pb-4 border-b-2 md:gap-0 lg:flex-row md:justify-between md:items-center border-b-slate-300'>
+                    <div className='flex flex-col items-center justify-start gap-2 md:flex-row'>
                         <Image
                             priority={true}
                             width={300}
                             height={150}
-                            src="/assets/logo.webp"
+                            src="/assets/logo.png"
                             alt="@logo"
                             className="mr-auto flex-1 w-fit md:w-[250px] h-[100px] rounded-[4px] object-cover md:object-contain"
                         />
                         <p className='flex-shrink md:flex-shrink-0'>{new Date().getFullYear()} © Bản quyền thuộc về Tiệm Kiến Trúc</p>
                     </div>
-                    <div className='w-full flex justify-start md:justify-end items-center gap-2'>
+                    <div className='flex items-center justify-start w-full gap-2 md:justify-end'>
                         <Link
                             href="mailto:info@metaverse-solution.vn"
-                            className="flex items-center gap-2 hover:text-blue-600 transition-colors duration-300"
+                            className="flex items-center gap-2 transition-colors duration-300 hover:text-blue-600"
                         >
                             <p>Liên hệ với chúng tôi</p>
                             <Image
@@ -59,8 +59,8 @@ const Footer = () => {
                         </Link>
                     </div>
                 </div>
-                <div className='col-span-1 pt-10 grid w-full grid-cols-1 items-start justify-start gap-5 lg:grid-cols-4 lg:mt-0'>
-                    <div className='flex-col-start gap-5 border-card-footer'>
+                <div className='grid items-start justify-start w-full grid-cols-1 col-span-1 gap-5 pt-10 lg:grid-cols-4 lg:mt-0'>
+                    <div className='gap-5 flex-col-start border-card-footer'>
                         <InformationFooter
                             title="Thiết kế"
                             info={[
@@ -86,7 +86,7 @@ const Footer = () => {
                             ]}
                         />
                     </div>
-                    <div className='flex justify-start items-start lg:justify-center lg:items-center gap-5 border-card-footer'>
+                    <div className='flex items-start justify-start gap-5 lg:justify-center lg:items-center border-card-footer'>
                         <InformationFooter
                             title="Về chúng tôi"
                             info={[
@@ -98,7 +98,7 @@ const Footer = () => {
                             ]}
                         />
                     </div>
-                    <div className='flex justify-start items-start lg:justify-center lg:items-center gap-5 border-card-footer'>
+                    <div className='flex items-start justify-start gap-5 lg:justify-center lg:items-center border-card-footer'>
                         <InformationFooter
                             title="Hỗ trợ"
                             info={[
@@ -108,7 +108,7 @@ const Footer = () => {
                             ]}
                         />
                     </div>
-                    <div className='mt-5 flex flex-col justify-center items-start gap-4'>
+                    <div className='flex flex-col items-start justify-center gap-4 mt-5'>
                         {[
                             { title: "LK6B/23, C17 Bộ Công An, Khu Đô Thị Mỗ Lao, P.Mỗ Lao, Q. Hà Đông, Hà Nội", icon: <MapPin className='flex-shrink-0 w-[18px] h-[18px]' /> },
                             { title: "0904993688", icon: <Phone className='flex-shrink-0 w-[18px] h-[18px]' /> },

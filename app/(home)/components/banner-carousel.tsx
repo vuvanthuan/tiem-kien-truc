@@ -12,21 +12,24 @@ const CarouselDots = ({ banners, carouselApi }: { banners: any[]; carouselApi: E
     const [selectedIndex, setSelectedIndex] = React.useState(0)
 
     React.useEffect(() => {
-        if (!carouselApi) return
+        if (!carouselApi) return;
 
         const onSelect = () => {
-            setSelectedIndex(carouselApi.selectedScrollSnap())
-        }
+            const currentIndex = carouselApi.selectedScrollSnap();
+            setSelectedIndex(currentIndex);
+        };
 
-        onSelect()
-        carouselApi.on("select", onSelect)
+        onSelect();
+
+        carouselApi.on("select", onSelect);
+
         return () => {
-            carouselApi.off("select", onSelect)
-        }
-    }, [carouselApi])
+            carouselApi.off("select", onSelect);
+        };
+    }, [carouselApi]);
 
     return (
-        <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex gap-2 z-4">
+        <div className="absolute flex gap-2 transform -translate-x-1/2 bottom-4 left-1/2 z-4">
             {banners.map((_, index) => (
                 <button
                     key={index}
@@ -126,12 +129,12 @@ export default function BannerCarousel() {
                                     className="object-cover"
                                     priority
                                 />
-                                <div className="absolute inset-0 bg-black/40 flex flex-col items-center justify-center text-white p-6">
-                                    <h2 className="text-4xl md:text-5xl font-bold mb-4">{banner.title}</h2>
-                                    <p className="text-xl md:text-2xl mb-8">{banner.description}</p>
+                                <div className="absolute inset-0 flex flex-col items-center justify-center p-6 text-white bg-black/40">
+                                    <h2 className="mb-4 text-4xl font-bold md:text-5xl">{banner.title}</h2>
+                                    <p className="mb-8 text-xl md:text-2xl">{banner.description}</p>
                                     <Button
                                         variant="outline"
-                                        className="text-black border-white hover:bg-white transition-colors"
+                                        className="text-black transition-colors border-white hover:bg-white"
                                     >
                                         Khám phá ngay
                                     </Button>
@@ -140,8 +143,8 @@ export default function BannerCarousel() {
                         </CarouselItem>
                     ))}
                 </CarouselContent>
-                <CarouselPrevious className="left-4 bg-white/20 hover:bg-white/40 border-none text-white z-10" />
-                <CarouselNext className="right-4 bg-white/20 hover:bg-white/40 border-none text-white z-10" />
+                <CarouselPrevious className="z-10 text-white border-none left-4 bg-white/20 hover:bg-white/40" />
+                <CarouselNext className="z-10 text-white border-none right-4 bg-white/20 hover:bg-white/40" />
                 <CarouselDots banners={banners} carouselApi={carouselRef.current} />
             </Carousel>
         </div>

@@ -7,9 +7,9 @@ import authorType from "./author";
 /**
  * This file is the schema definition for a post.
  *
- * Here you'll be able to edit the different fields that appear when you 
+ * Here you'll be able to edit the different fields that appear when you
  * create or edit a post in the studio.
- * 
+ *
  * Here you can see the different schema types that are available:
 
   https://www.sanity.io/docs/schema-types
@@ -44,7 +44,21 @@ export default defineType({
       name: "content",
       title: "Content",
       type: "array",
-      of: [{ type: "block" }],
+      of: [
+        { type: "block" },
+        {
+            type: "image",
+            options: { hotspot: true },
+            fields: [
+              {
+                name: "alt",
+                type: "string",
+                title: "Alternative text",
+                description: "Important for SEO and accessibility.",
+              },
+            ],
+          }
+      ],
     }),
     defineField({
       name: "excerpt",

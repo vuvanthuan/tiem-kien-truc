@@ -1,6 +1,14 @@
 export const initMenu = [
-    { label: 'Trang chủ', value: 'trang-chu' },
-    { label: 'Giới Thiệu', value: 'gioi-thieu' },
+    { label: 'Trang chủ', value: '' },
+    {   label: 'Giới Thiệu',
+        value: 'gioi-thieu',
+        children: [
+            { label: 'Giới thiệu kiến trúc', value: 'gioi-thieu-kien-truc' },
+            { label: 'Đội ngũ nhân sự', value: 'gioi-thieu-doi-ngu-nhan-su' },
+            { label: 'Quy trình làm việc', value: 'gioi-thieu-quy-trinh-lam-viec' },
+            { label: 'Hồ sơ năng lực', value: 'gioi-thieu-ho-so-nang-luc' },
+        ]
+     },
     {
         label: 'Thiết Kế', value: 'thiet-ke',
         children: [

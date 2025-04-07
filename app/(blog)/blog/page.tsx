@@ -19,11 +19,11 @@ function Intro(props: { title: string | null | undefined; description: any }) {
     ? props.description
     : demo.description;
   return (
-    <section className="mt-16 mb-16 flex flex-col items-center lg:mb-12 lg:flex-row lg:justify-between">
-      <h1 className="text-balance text-6xl font-bold leading-tight tracking-tighter lg:pr-8 lg:text-8xl">
+    <section className="flex flex-col items-center mt-16 mb-16 lg:mb-12 lg:flex-row lg:justify-between">
+      <h1 className="text-6xl font-bold leading-tight tracking-tighter text-balance lg:pr-8 lg:text-8xl">
         {title || demo.title}
       </h1>
-      <h2 className="text-pretty mt-5 text-center text-lg lg:pl-8 lg:text-left">
+      <h2 className="mt-5 text-lg text-center text-pretty lg:pl-8 lg:text-left">
         <PortableText
           className="prose-lg"
           value={description?.length ? description : demo.description}
@@ -46,12 +46,12 @@ function HeroPost({
 >) {
   return (
     <article>
-      <Link className="group mb-8 block md:mb-16" href={`/posts/${slug}`}>
+      <Link className="block mb-8 group md:mb-16" href={`/posts/${slug}`}>
         <CoverImage image={coverImage} priority />
       </Link>
       <div className="mb-20 md:mb-28 md:grid md:grid-cols-2 md:gap-x-16 lg:gap-x-8">
         <div>
-          <h3 className="text-pretty mb-4 text-4xl leading-tight lg:text-6xl">
+          <h3 className="mb-4 text-4xl leading-tight text-pretty lg:text-6xl">
             <Link href={`/posts/${slug}`} className="hover:underline">
               {title}
             </Link>
@@ -62,7 +62,7 @@ function HeroPost({
         </div>
         <div>
           {excerpt && (
-            <p className="text-pretty mb-4 text-lg leading-relaxed">
+            <p className="mb-4 text-lg leading-relaxed text-pretty">
               {excerpt}
             </p>
           )}
@@ -82,7 +82,7 @@ export default async function Page() {
   ]);
 
   return (
-    <div className="container mx-auto px-5">
+    <div className="container px-5 mx-auto">
       <Intro title={settings?.title} description={settings?.description} />
       {heroPost ? (
         <HeroPost
