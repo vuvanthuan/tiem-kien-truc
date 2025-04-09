@@ -32,3 +32,22 @@ export const postQuery = defineQuery(`
     ${postFields}
   }
 `);
+
+export const introductionQuery = defineQuery(`
+    *[_type == "introduction" && slug.current == $slug][0] {
+      title,
+      description,
+      content,
+      "slug": slug.current
+    }
+  `);
+
+
+export const quotationQuery = defineQuery(`
+    *[_type == "quotation" && slug.current == $slug][0] {
+      title,
+      description,
+      content,
+      "slug": slug.current
+    }
+  `);

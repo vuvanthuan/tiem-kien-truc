@@ -8,6 +8,7 @@ import { META } from "@/lib/constants/app";
 
 import Header from "@/components/templates/header";
 import Footer from "@/components/templates/footer";
+import FloatButtonSocialConnect from "@/components/templates/float-button-social-connect";
 
 const nextFont = Quicksand({ subsets: ["latin"], weight: ['300', '400', '500', '700'] });
 
@@ -84,9 +85,10 @@ export default async function RootLayout({
                 <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
                 <link rel="apple-touch-icon" href="/logo-circle.png" sizes="180x180" />
                 <link rel="icon" type="image/png" sizes="any" href="/logo-circle.png" />
-                <body className={cn("min-h-screen bg-background dark:bg-[#141523]", nextFont.className)}>
+                <body className={cn("min-h-screen bg-background", nextFont.className)}>
                     <Header />
                     {children}
+                    <FloatButtonSocialConnect />
                     <Footer />
                 </body>
             </html>

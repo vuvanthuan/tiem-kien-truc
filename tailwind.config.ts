@@ -84,6 +84,15 @@ export default {
                     '50%': { transform: 'translateY(30px)' },
                     '100%': { transform: 'translateY(0)' },
                 },
+                "wiggle": {
+                    "0%, 100%": { transform: "rotate(-5deg)" },
+                    "50%": { transform: "rotate(5deg)" },
+                },
+                "shake": {
+                    "0%, 100%": { transform: "translateX(0)" },
+                    "25%": { transform: "translateX(-2px)" },
+                    "75%": { transform: "translateX(2px)" },
+                },
             },
             animation: {
                 "accordion-down": "accordion-down 0.2s ease-out",
@@ -92,6 +101,8 @@ export default {
                 "collapsible-up": "collapsible-up 0.2s ease-in-out",
                 "bounceLeftToRight": 'bounceLeftToRight 2s infinite alternate ease-in-out',
                 "move-arrow": 'move-arrow 2s ease-in-out infinite',
+                "wiggle": "wiggle 0.8s ease-in-out infinite",
+                "shake": "shake 0.5s ease-in-out infinite",
             },
         },
     },

@@ -3,7 +3,7 @@ export const initMenu = [
     {   label: 'Giới Thiệu',
         value: 'gioi-thieu',
         children: [
-            { label: 'Giới thiệu kiến trúc', value: 'gioi-thieu-kien-truc' },
+            { label: 'Giới thiệu chung', value: 'gioi-thieu-chung' },
             { label: 'Đội ngũ nhân sự', value: 'gioi-thieu-doi-ngu-nhan-su' },
             { label: 'Quy trình làm việc', value: 'gioi-thieu-quy-trinh-lam-viec' },
             { label: 'Hồ sơ năng lực', value: 'gioi-thieu-ho-so-nang-luc' },

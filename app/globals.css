@@ -124,3 +124,18 @@
 .embla__slide.is-selected {
   opacity: 1;
 }
+
+@layer utilities {
+  .animation-delay-0 {
+    animation-delay: 0ms;
+  }
+  .animation-delay-100 {
+    animation-delay: 100ms;
+  }
+  .animation-delay-200 {
+    animation-delay: 200ms;
+  }
+  .animation-delay-300 {
+    animation-delay: 300ms;
+  }
+}
