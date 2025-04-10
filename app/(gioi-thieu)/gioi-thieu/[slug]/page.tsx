@@ -67,7 +67,7 @@ export default async function IntroductionPage({ params }: Props) {
     const pageTitle = matchedItem ? matchedItem.label : introduction.title;
 
     return (
-        <div className="container max-w-4xl py-10 mx-auto lg:max-w-7xl">
+        <div className="w-full px-2 md:px-4 lg:px-8 max-w-4xl py-10 mx-auto lg:max-w-7xl">
             <nav className="mb-6">
                 <Link href="/" className="text-blue-600 hover:underline">
                     Trang chủ

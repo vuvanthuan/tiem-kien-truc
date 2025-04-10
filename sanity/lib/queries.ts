@@ -51,3 +51,28 @@ export const quotationQuery = defineQuery(`
       "slug": slug.current
     }
   `);
+
+  export const designCategoryWithPostsQuery = `
+  *[_type == "designCategory" && slug.current == $slug][0]{
+    title,
+    "slug": slug.current,
+    thumbnail,
+    "posts": *[_type == "designPost" && references(^._id)] | order(_createdAt desc){
+      title,
+      thumbnail,
+      "slug": slug.current,
+      excerpt
+    }
+  }
+`;
+
+export const designPostBySlugQuery = `
+  *[_type == "designPost" && slug.current == $slug][0]{
+    title,
+    thumbnail,
+    excerpt,
+    "slug": slug.current,
+    "category": category->{title, "slug": slug.current},
+    content
+  }
+`;
