@@ -19,6 +19,7 @@
     "@sanity/assist": "^3.0.8",
     "@sanity/icons": "^3.7.0",
     "@sanity/image-url": "^1.1.0",
+    "@sanity/locale-vi-vn": "^1.1.16",
     "@sanity/preview-url-secret": "^2.0.0",
     "@sanity/vision": "^3.81.0",
     "@tailwindcss/typography": "^0.5.15",

@@ -3,6 +3,7 @@
  * This config is used to set up Sanity Studio that's mounted on the `app/(sanity)/studio/[[...tool]]/page.tsx` route
  */
 import { visionTool } from "@sanity/vision";
+import {viVNLocale} from '@sanity/locale-vi-vn'
 import { PluginOptions, defineConfig } from "sanity";
 import { unsplashImageAsset } from "sanity-plugin-asset-source-unsplash";
 import {
@@ -31,6 +32,8 @@ const homeLocation = {
 } satisfies DocumentLocation;
 
 export default defineConfig({
+    name: "studio",
+    title: "Trang quản trị",
     basePath: studioUrl,
     projectId,
     dataset,
@@ -48,7 +51,10 @@ export default defineConfig({
         ],
     },
     plugins: [
+        viVNLocale(),
         presentationTool({
+            name: 'presentation',
+            title: 'Xem trước trang',
             resolve: {
                 mainDocuments: defineDocuments([
                     {
@@ -59,7 +65,7 @@ export default defineConfig({
                 locations: {
                     settings: defineLocations({
                         locations: [homeLocation],
-                        message: "This document is used on all pages",
+                        message: "Tài liệu này được sử dụng trên tất cả các trang",
                         tone: "caution",
                     }),
                     post: defineLocations({
@@ -81,7 +87,11 @@ export default defineConfig({
             },
             previewUrl: { previewMode: { enable: "/api/draft-mode/enable" } },
         }),
-        structureTool({ structure: pageStructure([settings]) }),
+        structureTool({
+            name: 'structure',
+            title: 'Quản lý nội dung',
+            structure: pageStructure([settings]),
+        }),
         // Configures the global "new document" button, and document actions, to suit the Settings document singleton
         singletonPlugin([settings.name]),
         // Add an image asset source for Unsplash

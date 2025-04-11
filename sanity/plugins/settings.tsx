@@ -59,7 +59,7 @@ export const pageStructure = (
     );
 
     return S.list()
-      .title("Content")
+      .title("Nội dung quản trị")
       .items([...singletonItems, S.divider(), ...defaultListItems]);
   };
 };
