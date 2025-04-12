@@ -39,7 +39,7 @@ export default function FloatButtonSocialConnect() {
                         <Button
                             size="icon"
                             className={cn(
-                                "w-10 h-10 bg-transparent rounded-full shadow-lg transition-all duration-300 cursor-pointer",
+                                "w-10 h-10 bg-transparent rounded-full shadow-lg transition-all duration-300 cursor-pointer overflow-hidden",
                                 "group-hover:scale-110 group-hover:bg-slate-100",
                                 "flex items-center justify-center animate-wiggle",
                             )}
@@ -50,7 +50,7 @@ export default function FloatButtonSocialConnect() {
                                     alt={item.alt}
                                     width={28}
                                     height={28}
-                                    className="object-contain"
+                                    className="object-contain object-center w-full h-full"
                                 />
                             ) : (
                                 item.icon

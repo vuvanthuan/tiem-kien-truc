@@ -1,16 +1,7 @@
-import "../globals.css";
+import React from "react"
 import type { Metadata } from "next";
-import { Quicksand } from 'next/font/google';
-import { ViewTransitions } from "next-view-transitions";
 
-import { cn } from "@/lib/utils/tw-merge";
 import { META } from "@/lib/constants/app";
-
-import Header from "@/components/templates/header";
-import Footer from "@/components/templates/footer";
-import FloatButtonSocialConnect from "@/components/templates/float-button-social-connect";
-
-const nextFont = Quicksand({ subsets: ["latin"], weight: ['300', '400', '500', '700'] });
 
 export async function generateMetadata(): Promise<Metadata> {
     const metaData = {
@@ -79,19 +70,8 @@ export default async function RootLayout({
     children: React.ReactNode
 }>) {
     return (
-        <ViewTransitions>
-            <html lang="vi" suppressHydrationWarning>
-                <link rel="preconnect" href="https://fonts.googleapis.com" />
-                <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-                <link rel="apple-touch-icon" href="/logo-circle.png" sizes="180x180" />
-                <link rel="icon" type="image/png" sizes="any" href="/logo-circle.png" />
-                <body className={cn("min-h-screen bg-background", nextFont.className)}>
-                    <Header />
-                    {children}
-                    <FloatButtonSocialConnect />
-                    <Footer />
-                </body>
-            </html>
-        </ViewTransitions>
+        <React.Fragment>
+            {children}
+        </React.Fragment>
     );
 }

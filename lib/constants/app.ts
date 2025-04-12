@@ -4,7 +4,7 @@ export const META: IMeta = {
     URL: 'https://tiemkiemtruc.vn',
     siteName: 'Tiệm Kiến Trúc',
     title: 'Tiệm Kiến Trúc - Thiết Kế Kiến Trúc & Nội Thất Cao Cấp',
-    description: 'Chuyên thiết kế kiến trúc, nội thất sang trọng với phong cách hiện đại. Mang đến giải pháp thiết kế tối ưu cho không gian sống của bạn.', // Đã thay đổi mô tả
+    description: 'Chuyên thiết kế kiến trúc, nội thất sang trọng với phong cách hiện đại. Mang đến giải pháp thiết kế tối ưu cho không gian sống của bạn.',
     og: {
         locale: 'vi-VN',
         type: 'website',

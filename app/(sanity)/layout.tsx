@@ -1,23 +1,19 @@
 import "../globals.css";
 
-import { Inter } from "next/font/google";
-
-const inter = Inter({
-  variable: "--font-inter",
-  subsets: ["latin"],
-  display: "swap",
-});
+import { Quicksand } from "next/font/google";
 
 export { metadata, viewport } from "next-sanity/studio";
 
+const nextFont = Quicksand({ subsets: ["latin"], weight: ['300', '400', '500', '700'], display: "swap" });
+
 export default function RootLayout({
-  children,
+    children,
 }: {
-  children: React.ReactNode;
+    children: React.ReactNode;
 }) {
-  return (
-    <html lang="en" className={inter.variable}>
-      <body className="min-h-screen">{children}</body>
-    </html>
-  );
+    return (
+        <html lang="en" className={nextFont.className}>
+            <body className="min-h-screen">{children}</body>
+        </html>
+    );
 }

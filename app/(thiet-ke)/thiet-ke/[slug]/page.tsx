@@ -1,6 +1,6 @@
 import Link from "next/link";
-
 import { notFound } from "next/navigation";
+
 import { sanityFetch } from "@/sanity/lib/fetch";
 import { designCategoryWithPostsQuery } from "@/sanity/lib/queries";
 
@@ -10,31 +10,18 @@ type Props = {
     params: Promise<{ slug: string }>;
 };
 
-export async function generateMetadata({ params }: Props) {
-    const category = await sanityFetch({
-        query: designCategoryWithPostsQuery,
-        params
-    });
-
-    if (!category) return { title: "Không tìm thấy hạng mục" };
-
-    return {
-        title: category.title,
-        description: `Các bài viết trong hạng mục thiết kế: ${category.title}`,
-    };
-}
-
 export default async function DesignCategoryPage({ params }: Props) {
     const category = await sanityFetch({
         query: designCategoryWithPostsQuery,
-        params
+        params,
     });
+
+    console.log(params)
 
     if (!category) return notFound();
 
     return (
         <div className="w-full">
-
             {category.thumbnail && (
                 <div className="mb-2 md:mb-4">
                     <CoverImage
@@ -59,24 +46,24 @@ export default async function DesignCategoryPage({ params }: Props) {
 
                 <div className="w-full mx-auto">
                     {category.posts?.length > 0 ? (
-                        <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+                        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
                             {category.posts.map((post: any) => (
                                 <Link
                                     key={post.slug}
                                     href={`/thiet-ke/${category.slug}/${post.slug}`}
-                                    className="group block overflow-hidden border rounded-lg hover:shadow-md transition"
+                                    className="block overflow-hidden transition border rounded-lg group hover:shadow-md"
                                 >
                                     {post.thumbnail && (
-                                        <div className="aspect-w-16 aspect-h-10 overflow-hidden">
+                                        <div className="overflow-hidden aspect-w-16 aspect-h-10">
                                             <CoverImage
                                                 priority
                                                 image={post.thumbnail}
-                                                className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-300"
+                                                className="object-cover w-full h-full transition-transform duration-300 group-hover:scale-105"
                                             />
                                         </div>
                                     )}
                                     <div className="p-4">
-                                        <h3 className="text-lg font-semibold mb-1 group-hover:text-blue-600 transition-colors">
+                                        <h3 className="mb-1 text-lg font-semibold transition-colors group-hover:text-blue-600">
                                             {post.title}
                                         </h3>
                                         <p className="text-sm text-muted-foreground line-clamp-2">
@@ -87,7 +74,9 @@ export default async function DesignCategoryPage({ params }: Props) {
                             ))}
                         </div>
                     ) : (
-                        <p className="text-gray-500 text-center py-8">Chưa có bài viết nào trong hạng mục này.</p>
+                        <p className="py-8 text-center text-gray-500">
+                            Chưa có bài viết nào trong hạng mục này.
+                        </p>
                     )}
                 </div>
             </div>

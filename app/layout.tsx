@@ -1,13 +1,18 @@
-import React from "react"
+import "./globals.css";
 import type { Metadata } from "next";
+import { Quicksand } from 'next/font/google';
+import { ViewTransitions } from "next-view-transitions";
 
+import { cn } from "@/lib/utils/tw-merge";
 import { META } from "@/lib/constants/app";
+import RootLayoutTemplate from "@/components/templates/root-layout";
+
+const nextFont = Quicksand({ subsets: ["latin"], weight: ['300', '400', '500', '700'], display: "swap" });
 
 export async function generateMetadata(): Promise<Metadata> {
     const metaData = {
-        title: "Thi Công - Tiệm Kiến Trúc",
-        description:
-            "Khám phá dịch vụ thi công chuyên nghiệp tại Tiệm Kiến Trúc. Từ dự án thi công lớn đến thi công cá nhân, chúng tôi mang đến chất lượng vượt trội và không gian sống hoàn hảo theo ý tưởng của bạn.",
+        title: "Tiệm Kiến Trúc - Thiết kế Kiến trúc & Nội thất Cao cấp",
+        description: "Tiệm Kiến Trúc chuyên thiết kế kiến trúc, nội thất sang trọng với phong cách hiện đại. Chúng tôi mang đến giải pháp thiết kế tối ưu cho không gian sống của bạn.",
         siteName: "Tiệm Kiến Trúc",
     };
 
@@ -65,14 +70,24 @@ export async function generateMetadata(): Promise<Metadata> {
     };
 }
 
-export default async function IntroductionLayout({
+export default async function RootLayout({
     children,
 }: Readonly<{
     children: React.ReactNode
 }>) {
     return (
-        <React.Fragment>
-            {children}
-        </React.Fragment>
+        <ViewTransitions>
+            <html lang="vi" suppressHydrationWarning>
+                <link rel="preconnect" href="https://fonts.googleapis.com" />
+                <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+                <link rel="apple-touch-icon" href="/logo-circle.png" sizes="180x180" />
+                <link rel="icon" type="image/png" sizes="any" href="/logo-circle.png" />
+                <body className={cn("min-h-screen bg-background", nextFont.className)}>
+                    <RootLayoutTemplate>
+                        {children}
+                    </RootLayoutTemplate>
+                </body>
+            </html>
+        </ViewTransitions>
     );
 }

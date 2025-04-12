@@ -79,6 +79,11 @@ export type Quotation = {
         _ref: string;
         _type: "reference";
         _weak?: boolean;
+        [internalGroqTypeReferenceTo]?: "introduction";
+      } | {
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
         [internalGroqTypeReferenceTo]?: "quotation";
       };
       _type: "internalLink";
@@ -109,6 +114,16 @@ export type Quotation = {
     };
     description?: string;
     _type: "file";
+    _key: string;
+  }>;
+  requests?: Array<{
+    customerName?: string;
+    contactInfo?: string;
+    serviceType?: "interior_design" | "architecture_design" | "construction" | "other";
+    budget?: number;
+    details?: string;
+    submittedAt?: string;
+    _type: "request";
     _key: string;
   }>;
 };
@@ -908,69 +923,6 @@ export type IntroductionQueryResult = {
   }> | null;
   slug: string | null;
 } | null;
-// Variable: quotationQuery
-// Query: *[_type == "quotation" && slug.current == $slug][0] {      title,      description,      content,      "slug": slug.current    }
-export type QuotationQueryResult = {
-  title: string | null;
-  description: string | null;
-  content: Array<{
-    children?: Array<{
-      marks?: Array<string>;
-      text?: string;
-      _type: "span";
-      _key: string;
-    }>;
-    style?: "blockquote" | "code" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
-    listItem?: "bullet" | "number" | "square";
-    markDefs?: Array<{
-      reference?: {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "post";
-      } | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "quotation";
-      };
-      _type: "internalLink";
-      _key: string;
-    } | {
-      href?: string;
-      openInNewTab?: boolean;
-      _type: "link";
-      _key: string;
-    }>;
-    level?: number;
-    _type: "block";
-    _key: string;
-  } | {
-    asset?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "sanity.fileAsset";
-    };
-    description?: string;
-    _type: "file";
-    _key: string;
-  } | {
-    asset?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-    };
-    hotspot?: SanityImageHotspot;
-    crop?: SanityImageCrop;
-    alt?: string;
-    caption?: string;
-    _type: "image";
-    _key: string;
-  }> | null;
-  slug: string | null;
-} | null;
 
 // Query TypeMap
 import "@sanity/client";
@@ -982,6 +934,5 @@ declare module "@sanity/client" {
     "\n  *[_type == \"post\" && _id != $skip && defined(slug.current)] | order(date desc, _updatedAt desc) [0...$limit] {\n    \n  _id,\n  \"status\": select(_originalId in path(\"drafts.**\") => \"draft\", \"published\"),\n  \"title\": coalesce(title, \"Untitled\"),\n  \"slug\": slug.current,\n  excerpt,\n  coverImage,\n  \"date\": coalesce(date, _updatedAt),\n  \"author\": author->{\"name\": coalesce(name, \"Anonymous\"), picture},\n\n  }\n": MoreStoriesQueryResult;
     "\n  *[_type == \"post\" && slug.current == $slug] [0] {\n    content,\n    \n  _id,\n  \"status\": select(_originalId in path(\"drafts.**\") => \"draft\", \"published\"),\n  \"title\": coalesce(title, \"Untitled\"),\n  \"slug\": slug.current,\n  excerpt,\n  coverImage,\n  \"date\": coalesce(date, _updatedAt),\n  \"author\": author->{\"name\": coalesce(name, \"Anonymous\"), picture},\n\n  }\n": PostQueryResult;
     "\n    *[_type == \"introduction\" && slug.current == $slug][0] {\n      title,\n      description,\n      content,\n      \"slug\": slug.current\n    }\n  ": IntroductionQueryResult;
-    "\n    *[_type == \"quotation\" && slug.current == $slug][0] {\n      title,\n      description,\n      content,\n      \"slug\": slug.current\n    }\n  ": QuotationQueryResult;
   }
 }

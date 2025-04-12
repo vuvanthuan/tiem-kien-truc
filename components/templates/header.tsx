@@ -16,8 +16,8 @@ export default function Header() {
 
     return (
         <div className="sticky inset-x-0 top-0 z-10 flex items-center justify-between px-4 bg-white md:bg-opacity-80 md:backdrop-blur-lg md:px-12 lg:px-24">
-            <div className="flex items-start justify-center">
-                <Image src="/assets/logo.png" width={150} height={150} alt="logo" className="w-[100px] h-[100px] md:w-[125px] md:h-[125px] object-contain" />
+            <div className="flex items-start justify-center w-[100px] h-[100px]">
+                <Image src="/assets/logo.png" width={150} height={150} alt="logo" className="object-contain object-center w-full h-full" />
             </div>
 
             <div className="hidden md:block">

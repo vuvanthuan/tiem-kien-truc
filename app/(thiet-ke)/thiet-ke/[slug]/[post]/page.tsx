@@ -16,22 +16,6 @@ type Props = {
     params: Promise<{ slug: string; post: string }>;
 };
 
-export async function generateMetadata({ params }: Props) {
-    const resolvedParams = await params;
-
-    const post = await sanityFetch({
-        query: designPostBySlugQuery,
-        params: { slug: resolvedParams.post },
-    });
-
-    if (!post) return { title: "Không tìm thấy bài viết" };
-
-    return {
-        title: post.title,
-        description: post.excerpt,
-    };
-}
-
 export default async function DesignPostPage({ params }: Props) {
     const resolvedParams = await params;
 
@@ -58,9 +42,11 @@ export default async function DesignPostPage({ params }: Props) {
                     />
                 </div>
             )}
-            <div className="w-full px-2 md:px-4 lg:px-8 max-w-4xl py-10 mx-auto lg:max-w-7xl">
+            <div className="w-full max-w-4xl px-2 py-10 mx-auto md:px-4 lg:px-8 lg:max-w-7xl">
                 <nav className="mb-6">
-                    <Link href="/" className="text-blue-600 hover:underline">Trang chủ</Link>
+                    <Link href="/" className="text-blue-600 hover:underline">
+                        Trang chủ
+                    </Link>
                     <span className="mx-2">/</span>
                     <span className="text-gray-500">Thiết kế</span>
                     <span className="mx-2">/</span>

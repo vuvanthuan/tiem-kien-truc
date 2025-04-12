@@ -42,17 +42,7 @@ export const introductionQuery = defineQuery(`
     }
   `);
 
-
-export const quotationQuery = defineQuery(`
-    *[_type == "quotation" && slug.current == $slug][0] {
-      title,
-      description,
-      content,
-      "slug": slug.current
-    }
-  `);
-
-  export const designCategoryWithPostsQuery = `
+export const designCategoryWithPostsQuery = `
   *[_type == "designCategory" && slug.current == $slug][0]{
     title,
     "slug": slug.current,
@@ -75,4 +65,27 @@ export const designPostBySlugQuery = `
     "category": category->{title, "slug": slug.current},
     content
   }
+`;
+
+const allImagesQuery = `*[_type == "sanity.imageAsset"]{
+    _id,
+    url,
+    originalFilename,
+    mimeType,
+    size,
+    metadata {
+      dimensions,
+      palette,
+      lqip
+    }
+  }`;
+
+export const quotationQuery = `
+*[_type == "quotation" && slug.current == $slug][0] {
+  _id,
+  title,
+  description,
+  content,
+  slug
+}
 `;
