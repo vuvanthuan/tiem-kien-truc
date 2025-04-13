@@ -4,9 +4,9 @@ export default function TableOfContents({ toc }: { toc: TocItem[] }) {
   if (!toc.length) return null;
 
   return (
-    <nav className="toc mb-8 rounded-lg bg-gray-100 p-4">
+    <nav className="p-4 mb-8 bg-gray-100 rounded-lg toc">
       <h2 className="mb-2 text-xl font-bold">Mục lục</h2>
-      <ul className="list-inside list-decimal">
+      <ul className="list-decimal list-inside">
         {toc.map((item) => (
           <li
             key={item.id}
@@ -14,7 +14,7 @@ export default function TableOfContents({ toc }: { toc: TocItem[] }) {
           >
             <a
               href={`#${item.id}`}
-              className="text-blue-600 hover:underline"
+              className="text-[#854836] hover:underline"
             >
               {item.text}
             </a>

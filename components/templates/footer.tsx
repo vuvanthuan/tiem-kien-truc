@@ -47,7 +47,7 @@ const Footer = () => {
                     <div className='flex items-center justify-start w-full gap-2 md:justify-end'>
                         <Link
                             href="mailto:info@metaverse-solution.vn"
-                            className="flex items-center gap-2 transition-colors duration-300 hover:text-blue-600"
+                            className="flex items-center gap-2 transition-colors duration-300 hover:text-[#854836]"
                         >
                             <p>Liên hệ với chúng tôi</p>
                             <Image

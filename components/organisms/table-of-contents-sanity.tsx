@@ -14,7 +14,7 @@ export default function TableOfContents({ toc }: { toc: TocItem[] }) {
                     >
                         <a
                             href={`#${item.id}`}
-                            className="text-blue-600 hover:underline"
+                            className="text-[#854836] hover:underline"
                         >
                             {item.text}
                         </a>

@@ -53,7 +53,7 @@ export const DesktopMenu = ({ menu }: { menu: IMenuWebsite[] }) => {
                             <>
                                 <NavigationMenuTrigger
                                     className={cn(
-                                        isActive(`/${item.value}`, 1) && "text-amber-500"
+                                        isActive(`/${item.value}`, 1) && "text-[#854836] border-b border-b-[#854836]"
                                     )}
                                 >
                                     {item.label}
@@ -74,7 +74,8 @@ export const DesktopMenu = ({ menu }: { menu: IMenuWebsite[] }) => {
                                                                     href={childPath}
                                                                     className={cn(
                                                                         "pb-2 mb-2 font-medium border-b",
-                                                                        isActive(childPath, 2, isParent, item.value, childValues) && "text-amber-500"
+                                                                        "hover:border-b hover:border-[#854836] transition-all duration-200",
+                                                                        isActive("#", 2, isParent, item.value, childValues) && "text-[#854836]  border-b border-b-[#854836]"
                                                                     )}
                                                                 />
                                                                 <div className="flex flex-col gap-1 pl-2">
@@ -87,7 +88,8 @@ export const DesktopMenu = ({ menu }: { menu: IMenuWebsite[] }) => {
                                                                                 href={subChildPath}
                                                                                 className={cn(
                                                                                     "text-sm",
-                                                                                    isActive(subChildPath, 3) && "text-amber-500"
+                                                                                    "hover:border-b hover:border-[#854836] transition-all duration-200",
+                                                                                    isActive(subChildPath, 3) && "text-[#854836]  border-b border-b-[#854836]"
                                                                                 )}
                                                                             />
                                                                         );
@@ -99,7 +101,8 @@ export const DesktopMenu = ({ menu }: { menu: IMenuWebsite[] }) => {
                                                                 title={child.label}
                                                                 href={childPath}
                                                                 className={cn(
-                                                                    isActive(childPath, 2, isParent, item.value) && "text-amber-500"
+                                                                    "hover:border-b hover:border-[#854836] transition-all duration-200",
+                                                                    isActive(childPath, 2, isParent, item.value) && "text-[#854836]  border-b border-b-[#854836]"
                                                                 )}
                                                             />
                                                         )}
@@ -115,7 +118,7 @@ export const DesktopMenu = ({ menu }: { menu: IMenuWebsite[] }) => {
                                 <NavigationMenuLink
                                     className={cn(
                                         navigationMenuTriggerStyle(),
-                                        isActive(`/${item.value}`, 1) && "text-amber-500"
+                                        isActive(`/${item.value}`, 1) && "text-[#854836]  border-b border-b-[#854836]"
                                     )}
                                 >
                                     {item.label}

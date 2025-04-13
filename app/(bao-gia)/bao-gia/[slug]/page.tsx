@@ -65,7 +65,7 @@ export default async function QuotationPage({ params }: Props) {
   return (
     <div className="w-full max-w-4xl px-2 py-10 mx-auto md:px-4 lg:px-8 lg:max-w-7xl">
       <nav className="mb-6">
-        <Link href="/" className="text-blue-600 hover:underline">
+        <Link href="/" className="text-[#854836] hover:underline">
           Trang chủ
         </Link>
         <span className="mx-2">/</span>

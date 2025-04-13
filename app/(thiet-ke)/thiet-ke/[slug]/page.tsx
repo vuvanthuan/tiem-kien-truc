@@ -16,8 +16,6 @@ export default async function DesignCategoryPage({ params }: Props) {
         params,
     });
 
-    console.log(params)
-
     if (!category) return notFound();
 
     return (
@@ -33,9 +31,9 @@ export default async function DesignCategoryPage({ params }: Props) {
                 </div>
             )}
 
-            <div className="container max-w-6xl py-10 mx-auto">
+            <div className="container max-w-6xl py-4 mx-auto md:py-8">
                 <nav className="mb-6">
-                    <Link href="/" className="text-blue-600 hover:underline">
+                    <Link href="/" className="text-[#854836] hover:underline">
                         Trang chủ
                     </Link>
                     <span className="mx-2">/</span>
@@ -63,7 +61,7 @@ export default async function DesignCategoryPage({ params }: Props) {
                                         </div>
                                     )}
                                     <div className="p-4">
-                                        <h3 className="mb-1 text-lg font-semibold transition-colors group-hover:text-blue-600">
+                                        <h3 className="mb-1 text-lg font-semibold transition-colors group-hover:text-[#854836]">
                                             {post.title}
                                         </h3>
                                         <p className="text-sm text-muted-foreground line-clamp-2">

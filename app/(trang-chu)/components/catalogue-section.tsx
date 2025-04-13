@@ -87,7 +87,7 @@ export default function CatalogueSection() {
             <p className="py-4 text-sm text-gray-500">{item.description}</p>
             <Button
               variant="link"
-              className="inline-flex items-center h-auto p-0 font-medium text-blue-600 hover:text-blue-800"
+              className="inline-flex items-center h-auto p-0 font-medium text-[#854836] hover:text-blue-800"
               asChild
             >
               <a href="#">

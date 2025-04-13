@@ -49,7 +49,7 @@ export const MobileMenu = ({ menu }: { menu: IMenuWebsite[] }) => {
 
     const menuContent = useMemo(
         () => (
-            <div className="flex flex-col items-start justify-between w-full gap-5 px-4 py-4 overflow-y-auto">
+            <div className="flex flex-col items-start justify-between w-full gap-5 px-4 pt-2 pb-4 overflow-y-auto">
                 <Accordion type="single" collapsible className="w-full">
                     {menu.map((item, index) => (
                         <React.Fragment key={index}>
@@ -60,7 +60,7 @@ export const MobileMenu = ({ menu }: { menu: IMenuWebsite[] }) => {
                                             <p
                                                 className={cn(
                                                     "text-[16px] font-semibold",
-                                                    isActive(`/${item.value}`, 1) ? "text-amber-500" : "text-zinc-950"
+                                                    isActive(`/${item.value}`, 1) ? "text-[#854836] border-b border-b-[#854836]" : "text-zinc-950"
                                                 )}
                                             >
                                                 {item.label}
@@ -78,7 +78,7 @@ export const MobileMenu = ({ menu }: { menu: IMenuWebsite[] }) => {
                                                         <AccordionTrigger
                                                             className={cn(
                                                                 "text-[14px] p-0",
-                                                                isActive(childPath, 2, isParent, item.value, childValues) ? "text-amber-500" : "text-gray-700"
+                                                                isActive(childPath, 2, isParent, item.value, childValues) ? "text-[#854836] border-b border-b-[#854836]" : "text-gray-700"
                                                             )}
                                                         >
                                                             {child.label}
@@ -92,7 +92,7 @@ export const MobileMenu = ({ menu }: { menu: IMenuWebsite[] }) => {
                                                                         key={subIdx}
                                                                         className={cn(
                                                                             "text-[14px] text-gray-700 hover:text-black",
-                                                                            isActive(subChildPath, 3) && "text-amber-500"
+                                                                            isActive(subChildPath, 3) && "text-[#854836] border-b border-b-[#854836]"
                                                                         )}
                                                                         onClick={() => setIsOpen(false)}
                                                                     >
@@ -109,7 +109,7 @@ export const MobileMenu = ({ menu }: { menu: IMenuWebsite[] }) => {
                                                     key={idx}
                                                     className={cn(
                                                         "text-[14px]",
-                                                        isActive(childPath, 2, isParent, item.value) ? "text-amber-500" : "text-gray-700"
+                                                        isActive(childPath, 2, isParent, item.value) ? "text-[#854836] border-b border-b-[#854836]" : "text-gray-700"
                                                     )}
                                                     onClick={() => setIsOpen(false)}
                                                 >
@@ -124,8 +124,8 @@ export const MobileMenu = ({ menu }: { menu: IMenuWebsite[] }) => {
                                     href={`/${item.value}`}
                                     key={index}
                                     className={cn(
-                                        "flex flex-row items-center justify-between w-full py-4 text-[16px] font-semibold text-black hover:text-gray-700",
-                                        isActive(`/${item.value}`, 1) && "text-amber-500"
+                                        "flex flex-row items-center justify-between w-full py-2 text-[16px] font-semibold text-black hover:text-gray-700",
+                                        isActive(`/${item.value}`, 1) && "text-[#854836] border-b border-b-[#854836]"
                                     )}
                                     onClick={() => setIsOpen(false)}
                                 >
@@ -151,9 +151,9 @@ export const MobileMenu = ({ menu }: { menu: IMenuWebsite[] }) => {
                     aria-label={isOpen ? "Close menu" : "Open menu"}
                 >
                     {isOpen ? (
-                        <X className="h-6 w-6 text-black" />
+                        <X className="w-6 h-6 text-black" />
                     ) : (
-                        <Menu className="h-6 w-6 text-black" />
+                        <Menu className="w-6 h-6 text-black" />
                     )}
                 </Button>
             </div>
