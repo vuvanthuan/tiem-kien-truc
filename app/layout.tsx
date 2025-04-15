@@ -6,6 +6,7 @@ import { ViewTransitions } from "next-view-transitions";
 import { cn } from "@/lib/utils/tw-merge";
 import { META } from "@/lib/constants/app";
 import { ThemeProvider } from "@/lib/providers/theme";
+import { Toaster } from "@/lib/providers/toaster"
 
 import RootLayoutTemplate from "@/components/templates/root-layout";
 
@@ -94,6 +95,7 @@ export default async function RootLayout({
                         <RootLayoutTemplate>
                             {children}
                         </RootLayoutTemplate>
+                        <Toaster />
                     </ThemeProvider>
                 </body>
             </html>
