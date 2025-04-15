@@ -5,7 +5,7 @@ import { META } from "@/lib/constants/app";
 
 export async function generateMetadata(): Promise<Metadata> {
     const metaData = {
-        title: "Báo giá - Tiệm Kiến Trúc",
+        title: "Giới Thiệu - Tiệm Kiến Trúc",
         description: "Tìm hiểu về Tiệm Kiến Trúc - đơn vị chuyên thiết kế kiến trúc và nội thất cao cấp. Chúng tôi cam kết mang đến không gian sống đẳng cấp và tối ưu cho bạn.",
         siteName: "Tiệm Kiến Trúc",
     };

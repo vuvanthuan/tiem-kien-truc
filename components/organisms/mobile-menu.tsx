@@ -1,7 +1,7 @@
 "use client";
 
-import React, { useState, useMemo } from "react";
-import { motion } from "framer-motion";
+import React, { useEffect, useRef, useState, useMemo } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 import { Link } from "next-view-transitions";
 import { useRouter, usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
@@ -21,8 +21,19 @@ export const MobileMenu = ({ menu }: { menu: IMenuWebsite[] }) => {
     const router = useRouter();
     const pathname = usePathname();
     const [isOpen, setIsOpen] = useState(false);
+    const [isMounted, setIsMounted] = useState(false);
 
-    const toggleMenu = () => setIsOpen((prev) => !prev);
+    const menuRef = useRef<HTMLDivElement>(null);
+
+    const toggleMenu = () => {
+        if (isOpen) {
+            setIsOpen(false);
+            setTimeout(() => setIsMounted(false), 500);
+        } else {
+            setIsMounted(true);
+            setTimeout(() => setIsOpen(true), 0);
+        }
+    };
 
     const isActive = (path: string, level: number, isParent: boolean = false, itemValue: string = "", childValues: string[] = []) => {
         if (pathname === "/" && path !== "/") return false;
@@ -140,6 +151,19 @@ export const MobileMenu = ({ menu }: { menu: IMenuWebsite[] }) => {
         [menu, pathname]
     );
 
+    useEffect(() => {
+        const handleClickOutside = (event: MouseEvent) => {
+            if (menuRef.current && !menuRef.current.contains(event.target as Node) && isOpen) {
+                toggleMenu();
+            }
+        };
+
+        document.addEventListener("mousedown", handleClickOutside);
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+        };
+    }, [isOpen]);
+
     return (
         <React.Fragment>
             <div className="relative md:hidden">
@@ -158,8 +182,10 @@ export const MobileMenu = ({ menu }: { menu: IMenuWebsite[] }) => {
                 </Button>
             </div>
 
+            <AnimatePresence>
             {isOpen && (
                 <motion.div
+                    ref={menuRef}
                     initial={{ y: "-100%", opacity: 0 }}
                     animate={{ y: 0, opacity: 1 }}
                     exit={{ y: "-100%", opacity: 0 }}
@@ -182,6 +208,7 @@ export const MobileMenu = ({ menu }: { menu: IMenuWebsite[] }) => {
                     </div>
                 </motion.div>
             )}
+            </AnimatePresence>
         </React.Fragment>
     );
 };

@@ -5,6 +5,8 @@ import { ViewTransitions } from "next-view-transitions";
 
 import { cn } from "@/lib/utils/tw-merge";
 import { META } from "@/lib/constants/app";
+import { ThemeProvider } from "@/lib/providers/theme";
+
 import RootLayoutTemplate from "@/components/templates/root-layout";
 
 const nextFont = Quicksand({ subsets: ["latin"], weight: ['300', '400', '500', '700'], display: "swap" });
@@ -83,9 +85,16 @@ export default async function RootLayout({
                 <link rel="apple-touch-icon" href="/logo-circle.png" sizes="180x180" />
                 <link rel="icon" type="image/png" sizes="any" href="/logo-circle.png" />
                 <body className={cn("min-h-screen bg-background", nextFont.className)}>
-                    <RootLayoutTemplate>
-                        {children}
-                    </RootLayoutTemplate>
+                    <ThemeProvider
+                        attribute="class"
+                        defaultTheme="light"
+                        enableSystem
+                        disableTransitionOnChange
+                    >
+                        <RootLayoutTemplate>
+                            {children}
+                        </RootLayoutTemplate>
+                    </ThemeProvider>
                 </body>
             </html>
         </ViewTransitions>

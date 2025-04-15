@@ -67,7 +67,18 @@ export const designPostBySlugQuery = `
   }
 `;
 
-const allImagesQuery = `*[_type == "sanity.imageAsset"]{
+export const quotationQuery = `
+*[_type == "quotation" && slug.current == $slug][0] {
+  _id,
+  title,
+  description,
+  content,
+  slug
+}
+`;
+
+
+export const allImagesQuery = `*[_type == "sanity.imageAsset"]{
     _id,
     url,
     originalFilename,
@@ -79,13 +90,3 @@ const allImagesQuery = `*[_type == "sanity.imageAsset"]{
       lqip
     }
   }`;
-
-export const quotationQuery = `
-*[_type == "quotation" && slug.current == $slug][0] {
-  _id,
-  title,
-  description,
-  content,
-  slug
-}
-`;
