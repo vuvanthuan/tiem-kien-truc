@@ -10,7 +10,7 @@ export default function ContactInfo() {
         {
             icon: <Phone className="w-5 h-5" />,
             title: "Điện thoại",
-            content: "904993688",
+            content: "0904993688",
             delay: 0.1,
         },
         {

@@ -46,10 +46,8 @@ export default function ContactForm() {
         setIsSubmitting(true)
 
         try {
-            // Here you would typically send the form data to your backend
             console.log(values)
 
-            // Simulate API call
             await new Promise((resolve) => setTimeout(resolve, 1000))
 
             toast({
@@ -74,12 +72,12 @@ export default function ContactForm() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="p-6 rounded-lg shadow-md bg-card"
+            className="bg-card"
         >
             <h2 className="mb-6 text-2xl font-bold">Gửi tin nhắn cho chúng tôi</h2>
 
             <Form {...form}>
-                <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+                <form onSubmit={form.handleSubmit(onSubmit)} className="p-6 space-y-6 rounded-lg shadow-md">
                     <FormField
                         control={form.control}
                         name="name"

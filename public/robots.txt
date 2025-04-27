@@ -1,0 +1,14 @@
+# *
+User-agent: *
+Allow: /
+
+# *
+User-agent: *
+Disallow: /api/*
+Disallow: /studio/*
+
+# Host
+Host: https://tiemkientruc.vn
+
+# Sitemaps
+Sitemap: https://tiemkientruc.vn/sitemap.xml

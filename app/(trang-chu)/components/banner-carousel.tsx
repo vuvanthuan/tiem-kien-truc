@@ -3,33 +3,30 @@
 import * as React from "react"
 import Image from "next/image"
 import Autoplay from "embla-carousel-autoplay"
-import type { EmblaCarouselType } from "embla-carousel"
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/molecules/carousel"
 import { Button } from "@/components/atoms/button"
 import { cn } from "@/lib/utils/tw-merge"
 
-const CarouselDots = ({ banners, carouselApi }: { banners: any[]; carouselApi: EmblaCarouselType | null }) => {
+const CarouselDots = ({ banners, carouselApi }: { banners: any[]; carouselApi: any }) => {
     const [selectedIndex, setSelectedIndex] = React.useState(0)
 
     React.useEffect(() => {
-        if (!carouselApi) return;
+        if (!carouselApi) return
 
         const onSelect = () => {
-            const currentIndex = carouselApi.selectedScrollSnap();
-            setSelectedIndex(currentIndex);
-        };
+            setSelectedIndex(carouselApi.selectedScrollSnap())
+        }
 
-        onSelect();
-
-        carouselApi.on("select", onSelect);
+        onSelect()
+        carouselApi.on("select", onSelect)
 
         return () => {
-            carouselApi.off("select", onSelect);
-        };
-    }, [carouselApi]);
+            carouselApi.off("select", onSelect)
+        }
+    }, [carouselApi])
 
     return (
-        <div className="absolute flex gap-2 transform -translate-x-1/2 bottom-4 left-1/2 z-4">
+        <div className="absolute z-10 flex gap-2 transform -translate-x-1/2 bottom-4 left-1/2">
             {banners.map((_, index) => (
                 <button
                     key={index}
@@ -46,7 +43,7 @@ const CarouselDots = ({ banners, carouselApi }: { banners: any[]; carouselApi: E
 
 export default function BannerCarousel() {
     const plugin = React.useRef(Autoplay({ delay: 5000, stopOnInteraction: true }))
-    const carouselRef = React.useRef<EmblaCarouselType | null>(null)
+    const [carouselApi, setCarouselApi] = React.useState<any>(null)
 
     const banners = [
         {
@@ -106,11 +103,7 @@ export default function BannerCarousel() {
                 className="w-full"
                 onMouseEnter={() => plugin.current.stop()}
                 onMouseLeave={() => plugin.current.play()}
-                setApi={(api) => {
-                    if (api) {
-                        carouselRef.current = api
-                    }
-                }}
+                setApi={setCarouselApi}
                 opts={{
                     align: "start",
                     loop: true,
@@ -145,7 +138,7 @@ export default function BannerCarousel() {
                 </CarouselContent>
                 <CarouselPrevious className="z-10 text-white border-none left-4 bg-white/20 hover:bg-white/40" />
                 <CarouselNext className="z-10 text-white border-none right-4 bg-white/20 hover:bg-white/40" />
-                <CarouselDots banners={banners} carouselApi={carouselRef.current} />
+                <CarouselDots banners={banners} carouselApi={carouselApi} />
             </Carousel>
         </div>
     )
