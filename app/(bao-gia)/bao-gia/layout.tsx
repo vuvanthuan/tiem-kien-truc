@@ -5,31 +5,44 @@ import { META } from "@/lib/constants/app";
 
 export async function generateMetadata(): Promise<Metadata> {
     const metaData = {
-        title: "Báo giá - Tiệm Kiến Trúc",
-        description: "Tìm hiểu về Tiệm Kiến Trúc - đơn vị chuyên thiết kế kiến trúc và nội thất cao cấp. Chúng tôi cam kết mang đến không gian sống đẳng cấp và tối ưu cho bạn.",
+        title: "Báo Giá Thiết Kế Kiến Trúc & Nội Thất Chi Tiết | Tiệm Kiến Trúc",
+        description: "Xem bảng báo giá thiết kế kiến trúc, nội thất chi tiết và ưu đãi tại Tiệm Kiến Trúc. Cập nhật chi phí thiết kế nhà phố, biệt thự, căn hộ với cam kết chất lượng cao.",
         siteName: "Tiệm Kiến Trúc",
+        keywords: [
+            "báo giá thiết kế kiến trúc",
+            "báo giá thiết kế nội thất",
+            "chi phí thiết kế nhà phố",
+            "chi phí thiết kế biệt thự",
+            "chi phí thiết kế căn hộ",
+            "dịch vụ thiết kế kiến trúc giá tốt",
+            "báo giá thi công nội thất",
+            ...META.keywords,
+        ],
     };
 
     return {
         metadataBase: new URL(META.URL),
         title: {
-            default: metaData.siteName,
+            default: metaData.title,
             template: `%s | ${metaData.siteName}`,
         },
         description: metaData.description,
+        keywords: metaData.keywords.join(", "),
         openGraph: {
             title: metaData.title,
             description: metaData.description,
-            url: META.URL,
+            url: `${META.URL}/bao-gia`,
             siteName: metaData.siteName,
             images: [
                 {
                     url: META.og.ogImage,
                     width: META.og.width,
                     height: META.og.height,
+                    alt: "Báo giá thiết kế kiến trúc nội thất",
                 },
             ],
-            type: META.og.type || "website",
+            type: META.og.type ?? "website",
+            locale: META.og.locale,
         },
         icons: [
             {
@@ -47,20 +60,21 @@ export async function generateMetadata(): Promise<Metadata> {
             {
                 rel: 'apple-touch-icon',
                 sizes: '180x180',
-                url: '/apple-touch-ico.png',
+                url: '/apple-touch-icon.png',
             },
         ],
         robots: {
             index: true,
             follow: true,
-            noarchive: true,
-            nosnippet: true,
-            noimageindex: true,
             nocache: true,
         },
         alternates: {
-            canonical: `${META.URL}`,
+            canonical: `${META.URL}/bao-gia`,
         },
+        authors: [
+            { name: metaData.siteName },
+        ],
+        category: "Báo giá thiết kế nội thất và kiến trúc",
     };
 }
 

@@ -4,65 +4,55 @@ import type { Metadata } from "next";
 import { META } from "@/lib/constants/app";
 
 export async function generateMetadata(): Promise<Metadata> {
-    const metaData = {
-        title: "Thi Công - Tiệm Kiến Trúc",
-        description:
-            "Khám phá dịch vụ thi công chuyên nghiệp tại Tiệm Kiến Trúc. Từ dự án thi công lớn đến thi công cá nhân, chúng tôi mang đến chất lượng vượt trội và không gian sống hoàn hảo theo ý tưởng của bạn.",
-        siteName: "Tiệm Kiến Trúc",
-    };
+  const thiCongKeywords = [
+    "thi công nội thất",
+    "thi công kiến trúc",
+    "thi công nhà phố",
+    "thi công biệt thự",
+    "công ty thi công nội thất",
+    "công ty thi công xây dựng",
+    "thi công trọn gói",
+    "thi công hoàn thiện nhà",
+    ...META.keywords,
+  ];
 
-    return {
-        metadataBase: new URL(META.URL),
-        title: {
-            default: metaData.siteName,
-            template: `%s | ${metaData.siteName}`,
+  return {
+    metadataBase: new URL(META.URL),
+    title: {
+      default: "Thi Công Nội Thất & Kiến Trúc Chuyên Nghiệp | Tiệm Kiến Trúc",
+      template: "%s | Tiệm Kiến Trúc",
+    },
+    description: "Tiệm Kiến Trúc chuyên thi công nội thất và kiến trúc cao cấp, đảm bảo tiến độ và chất lượng vượt trội. Tối ưu không gian sống biệt thự, nhà phố, căn hộ hiện đại.",
+    keywords: thiCongKeywords.join(", "),
+    openGraph: {
+      title: "Thi Công Nội Thất & Kiến Trúc Chuyên Nghiệp | Tiệm Kiến Trúc",
+      description: "Dịch vụ thi công nội thất, kiến trúc chuyên nghiệp, đúng tiến độ, đảm bảo chất lượng cao. Tiệm Kiến Trúc đồng hành cùng không gian sống hoàn hảo của bạn.",
+      url: `${META.URL}/thi-cong`,
+      siteName: META.siteName,
+      images: [
+        {
+          url: "/assets/og-image-thi-cong.jpg",
+          width: META.og.width,
+          height: META.og.height,
+          alt: "Thi công nội thất và kiến trúc cao cấp",
         },
-        description: metaData.description,
-        openGraph: {
-            title: metaData.title,
-            description: metaData.description,
-            url: META.URL,
-            siteName: metaData.siteName,
-            images: [
-                {
-                    url: META.og.ogImage,
-                    width: META.og.width,
-                    height: META.og.height,
-                },
-            ],
-            type: META.og.type || "website",
-        },
-        icons: [
-            {
-                rel: 'icon',
-                type: 'image/png',
-                sizes: '32x32',
-                url: '/favicon-32x32.png',
-            },
-            {
-                rel: 'icon',
-                type: 'image/png',
-                sizes: '16x16',
-                url: '/favicon-16x16.png',
-            },
-            {
-                rel: 'apple-touch-icon',
-                sizes: '180x180',
-                url: '/apple-touch-ico.png',
-            },
-        ],
-        robots: {
-            index: true,
-            follow: true,
-            noarchive: true,
-            nosnippet: true,
-            noimageindex: true,
-            nocache: true,
-        },
-        alternates: {
-            canonical: `${META.URL}`,
-        },
-    };
+      ],
+      locale: META.og.locale,
+      type: META.og.type ?? "website",
+    },
+    robots: {
+      index: true,
+      follow: true,
+      nocache: true,
+    },
+    alternates: {
+      canonical: `${META.URL}/thi-cong`,
+    },
+    authors: [
+      { name: META.siteName },
+    ],
+    category: "Thi công nội thất và kiến trúc",
+  };
 }
 
 export default async function IntroductionLayout({

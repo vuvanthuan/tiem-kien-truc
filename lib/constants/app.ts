@@ -1,10 +1,10 @@
 import { IMeta } from "@/lib/types/app";
 
 export const META: IMeta = {
-    URL: 'https://tiemkiemtruc.vn',
+    URL: 'https://tiemkientruc.vn',
     siteName: 'Tiệm Kiến Trúc',
-    title: 'Tiệm Kiến Trúc - Thiết Kế Kiến Trúc & Nội Thất Cao Cấp',
-    description: 'Chuyên thiết kế kiến trúc, nội thất sang trọng với phong cách hiện đại. Mang đến giải pháp thiết kế tối ưu cho không gian sống của bạn.',
+    title: 'Thiết Kế Kiến Trúc & Nội Thất Cao Cấp | Tiệm Kiến Trúc',
+    description: 'Dịch vụ thiết kế kiến trúc và nội thất cao cấp, hiện đại. Tiệm Kiến Trúc mang đến giải pháp tối ưu không gian sống, biệt thự, nhà phố, căn hộ với phong cách sang trọng.',
     og: {
         locale: 'vi-VN',
         type: 'website',
@@ -13,10 +13,14 @@ export const META: IMeta = {
         height: 630,
     },
     keywords: [
-        "thiết kế kiến trúc",
-        "thiết kế nội thất",
-        "kiến trúc nhà phố",
-        "biệt thự cao cấp",
-        "thiết kế xây dựng"
+        "dịch vụ thiết kế kiến trúc",
+        "dịch vụ thiết kế nội thất",
+        "thiết kế nhà phố",
+        "thiết kế biệt thự",
+        "thiết kế căn hộ",
+        "kiến trúc nội thất cao cấp",
+        "công ty thiết kế kiến trúc",
+        "công ty thiết kế nội thất",
+        "thiết kế không gian sống"
     ]
 };

@@ -13,63 +13,51 @@ import RootLayoutTemplate from "@/components/templates/root-layout";
 const nextFont = Quicksand({ subsets: ["latin"], weight: ['300', '400', '500', '700'], display: "swap" });
 
 export async function generateMetadata(): Promise<Metadata> {
-    const metaData = {
-        title: "Tiệm Kiến Trúc - Thiết kế Kiến trúc & Nội thất Cao cấp",
-        description: "Tiệm Kiến Trúc chuyên thiết kế kiến trúc, nội thất sang trọng với phong cách hiện đại. Chúng tôi mang đến giải pháp thiết kế tối ưu cho không gian sống của bạn.",
-        siteName: "Tiệm Kiến Trúc",
-    };
-
     return {
         metadataBase: new URL(META.URL),
         title: {
-            default: metaData.siteName,
-            template: `%s | ${metaData.siteName}`,
+            default: "Thiết Kế Kiến Trúc & Nội Thất Cao Cấp | Tiệm Kiến Trúc",
+            template: "%s | Tiệm Kiến Trúc",
         },
-        description: metaData.description,
+        description: "Dịch vụ thiết kế kiến trúc và nội thất cao cấp, hiện đại. Tiệm Kiến Trúc mang đến giải pháp tối ưu không gian sống, biệt thự, nhà phố, căn hộ với phong cách sang trọng.",
+        keywords: META.keywords.join(", "),
         openGraph: {
-            title: metaData.title,
-            description: metaData.description,
+            title: "Thiết Kế Kiến Trúc & Nội Thất Cao Cấp | Tiệm Kiến Trúc",
+            description: "Dịch vụ thiết kế kiến trúc và nội thất cao cấp, hiện đại. Tiệm Kiến Trúc mang đến giải pháp tối ưu không gian sống, biệt thự, nhà phố, căn hộ với phong cách sang trọng.",
             url: META.URL,
-            siteName: metaData.siteName,
+            siteName: "Tiệm Kiến Trúc",
             images: [
                 {
                     url: META.og.ogImage,
                     width: META.og.width,
                     height: META.og.height,
+                    alt: "Thiết kế kiến trúc & nội thất cao cấp",
                 },
             ],
-            type: META.og.type || "website",
+            locale: META.og.locale,
+            type: (META.og.type ?? 'website') as 'website',
         },
-        icons: [
-            {
-                rel: 'icon',
-                type: 'image/png',
-                sizes: '32x32',
-                url: '/favicon-32x32.png',
-            },
-            {
-                rel: 'icon',
-                type: 'image/png',
-                sizes: '16x16',
-                url: '/favicon-16x16.png',
-            },
-            {
-                rel: 'apple-touch-icon',
-                sizes: '180x180',
-                url: '/apple-touch-ico.png',
-            },
-        ],
         robots: {
             index: true,
             follow: true,
-            noarchive: true,
-            nosnippet: true,
-            noimageindex: true,
             nocache: true,
         },
-        alternates: {
-            canonical: `${META.URL}`,
+        icons: {
+            icon: [
+                { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
+                { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
+            ],
+            apple: [
+                { url: "/apple-touch-icon.png", sizes: "180x180" },
+            ],
         },
+        alternates: {
+            canonical: META.URL,
+        },
+        authors: [
+            { name: "Tiệm Kiến Trúc" },
+        ],
+        category: "Thiết kế kiến trúc nội thất",
     };
 }
 

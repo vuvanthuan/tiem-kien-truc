@@ -15,8 +15,13 @@ export default function Header() {
     const router = useRouter();
 
     return (
-        <div className="sticky inset-x-0 top-0 z-50 flex items-center justify-between px-4 bg-white md:bg-opacity-80 backdrop-blur-lg md:backdrop-blur-md md:px-12 lg:px-24">
-            <div className="flex items-start justify-center">
+        <div className="sticky inset-x-0 top-0 z-50 flex items-center justify-between bg-white md:bg-opacity-80 backdrop-blur-lg md:backdrop-blur-md md:px-12 lg:px-24">
+            <div
+                className="flex items-start justify-center cursor-pointer"
+                onClick={() => {
+                    router.push("/");
+                }}
+            >
                 <Image src="/assets/logo.png" width={150} height={150} alt="logo" className="object-contain object-center w-[75px] h-[75px] md:w-[100px] md:h-[100px]" />
             </div>
 

@@ -4,64 +4,76 @@ import type { Metadata } from "next";
 import { META } from "@/lib/constants/app";
 
 export async function generateMetadata(): Promise<Metadata> {
-    const metaData = {
-        title: "Giới Thiệu - Tiệm Kiến Trúc",
-        description: "Tìm hiểu về Tiệm Kiến Trúc - đơn vị chuyên thiết kế kiến trúc và nội thất cao cấp. Chúng tôi cam kết mang đến không gian sống đẳng cấp và tối ưu cho bạn.",
-        siteName: "Tiệm Kiến Trúc",
-    };
+  const metaData = {
+    title: "Giới Thiệu Công Ty Thiết Kế Kiến Trúc & Nội Thất | Tiệm Kiến Trúc",
+    description: "Tiệm Kiến Trúc - đơn vị thiết kế kiến trúc và nội thất hàng đầu Việt Nam. Khám phá hành trình, tầm nhìn và giá trị cốt lõi chúng tôi mang đến cho không gian sống hiện đại.",
+    siteName: "Tiệm Kiến Trúc",
+    keywords: [
+      "giới thiệu công ty thiết kế kiến trúc",
+      "giới thiệu công ty nội thất",
+      "công ty thiết kế kiến trúc uy tín",
+      "công ty thiết kế nội thất cao cấp",
+      "về Tiệm Kiến Trúc",
+      ...META.keywords,
+    ],
+  };
 
-    return {
-        metadataBase: new URL(META.URL),
-        title: {
-            default: metaData.siteName,
-            template: `%s | ${metaData.siteName}`,
+  return {
+    metadataBase: new URL(META.URL),
+    title: {
+      default: metaData.title,
+      template: `%s | ${metaData.siteName}`,
+    },
+    description: metaData.description,
+    keywords: metaData.keywords.join(", "),
+    openGraph: {
+      title: metaData.title,
+      description: metaData.description,
+      url: `${META.URL}/gioi-thieu`,
+      siteName: metaData.siteName,
+      images: [
+        {
+          url: META.og.ogImage,
+          width: META.og.width,
+          height: META.og.height,
+          alt: "Giới thiệu công ty Tiệm Kiến Trúc",
         },
-        description: metaData.description,
-        openGraph: {
-            title: metaData.title,
-            description: metaData.description,
-            url: META.URL,
-            siteName: metaData.siteName,
-            images: [
-                {
-                    url: META.og.ogImage,
-                    width: META.og.width,
-                    height: META.og.height,
-                },
-            ],
-            type: META.og.type || "website",
-        },
-        icons: [
-            {
-                rel: 'icon',
-                type: 'image/png',
-                sizes: '32x32',
-                url: '/favicon-32x32.png',
-            },
-            {
-                rel: 'icon',
-                type: 'image/png',
-                sizes: '16x16',
-                url: '/favicon-16x16.png',
-            },
-            {
-                rel: 'apple-touch-icon',
-                sizes: '180x180',
-                url: '/apple-touch-ico.png',
-            },
-        ],
-        robots: {
-            index: true,
-            follow: true,
-            noarchive: true,
-            nosnippet: true,
-            noimageindex: true,
-            nocache: true,
-        },
-        alternates: {
-            canonical: `${META.URL}`,
-        },
-    };
+      ],
+      type: META.og.type ?? "website",
+      locale: META.og.locale,
+    },
+    icons: [
+      {
+        rel: 'icon',
+        type: 'image/png',
+        sizes: '32x32',
+        url: '/favicon-32x32.png',
+      },
+      {
+        rel: 'icon',
+        type: 'image/png',
+        sizes: '16x16',
+        url: '/favicon-16x16.png',
+      },
+      {
+        rel: 'apple-touch-icon',
+        sizes: '180x180',
+        url: '/apple-touch-icon.png'
+      },
+    ],
+    robots: {
+      index: true,
+      follow: true,
+      nocache: true,
+    },
+    alternates: {
+      canonical: `${META.URL}/gioi-thieu`
+    },
+    authors: [
+      { name: metaData.siteName },
+    ],
+    category: "Giới thiệu công ty thiết kế nội thất và kiến trúc",
+  };
 }
 
 export default async function IntroductionLayout({

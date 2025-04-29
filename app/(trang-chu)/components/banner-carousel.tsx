@@ -3,9 +3,32 @@
 import * as React from "react"
 import Image from "next/image"
 import Autoplay from "embla-carousel-autoplay"
-import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/molecules/carousel"
-import { Button } from "@/components/atoms/button"
+import { useRouter } from "next/navigation";
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+
 import { cn } from "@/lib/utils/tw-merge"
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/molecules/carousel"
+import { Form, FormField, FormItem, FormControl, FormMessage } from "@/components/molecules/form"
+import { Button } from "@/components/atoms/button"
+import { Input } from "@/components/atoms/input"
+
+import { carouselData } from "@/public/mocks/carousel";
+
+
+const formSchema = z.object({
+    query: z.string().min(1, { message: "Vui lòng nhập từ khóa tìm kiếm" }),
+});
+
+interface SearchResult {
+    title: string;
+    slug: { current: string };
+    excerpt?: string;
+    thumbnail?: { asset: { url: string } };
+    publishedAt: string;
+    category: { title: string };
+}
 
 const CarouselDots = ({ banners, carouselApi }: { banners: any[]; carouselApi: any }) => {
     const [selectedIndex, setSelectedIndex] = React.useState(0)
@@ -42,59 +65,41 @@ const CarouselDots = ({ banners, carouselApi }: { banners: any[]; carouselApi: a
 }
 
 export default function BannerCarousel() {
+    const router = useRouter();
     const plugin = React.useRef(Autoplay({ delay: 5000, stopOnInteraction: true }))
     const [carouselApi, setCarouselApi] = React.useState<any>(null)
+    const [searchResults, setSearchResults] = React.useState<SearchResult[]>([]);
+    const [isLoading, setIsLoading] = React.useState(false);
 
-    const banners = [
-        {
-            id: 1,
-            title: "TiemKienTruc",
-            image: "/assets/swiper1.jpg",
-            description: "Thiết kế hiện đại, sang trọng",
+    const form = useForm<z.infer<typeof formSchema>>({
+        resolver: zodResolver(formSchema),
+        defaultValues: {
+            query: "",
         },
-        {
-            id: 2,
-            title: "TiemKienTruc",
-            image: "/assets/swiper2.jpg",
-            description: "Không gian sống hoàn hảo",
-        },
-        {
-            id: 3,
-            title: "TiemKienTruc",
-            image: "/assets/swiper3.jpg",
-            description: "Giải pháp kiến trúc toàn diện",
-        },
-        {
-            id: 4,
-            title: "TiemKienTruc",
-            image: "/assets/swiper4.jpg",
-            description: "Giải pháp kiến trúc toàn diện",
-        },
-        {
-            id: 5,
-            title: "TiemKienTruc",
-            image: "/assets/swiper5.jpg",
-            description: "Giải pháp kiến trúc toàn diện",
-        },
-        {
-            id: 6,
-            title: "TiemKienTruc",
-            image: "/assets/swiper6.jpg",
-            description: "Giải pháp kiến trúc toàn diện",
-        },
-        {
-            id: 7,
-            title: "TiemKienTruc",
-            image: "/assets/swiper7.jpg",
-            description: "Giải pháp kiến trúc toàn diện",
-        },
-        {
-            id: 8,
-            title: "TiemKienTruc",
-            image: "/assets/swiper8.jpg",
-            description: "Giải pháp kiến trúc toàn diện",
-        },
-    ]
+    });
+
+    const onSubmit = async (values: z.infer<typeof formSchema>) => {
+        setIsLoading(true);
+        try {
+            const response = await fetch(`/api/search?query=${encodeURIComponent(values.query)}`);
+            const data = await response.json();
+            setSearchResults(data.results || []);
+            router.push(`/tim-kiem?keyword=${encodeURIComponent(values.query)}`);
+        } catch (error) {
+            console.error("Search error:", error);
+            setSearchResults([]);
+        } finally {
+            setIsLoading(false);
+        }
+    };
+
+    const handleInputFocus = () => {
+        plugin.current.stop();
+    };
+
+    const handleInputBlur = () => {
+        plugin.current.play();
+    };
 
     return (
         <div className="w-full">
@@ -112,7 +117,7 @@ export default function BannerCarousel() {
                 }}
             >
                 <CarouselContent>
-                    {banners.map((banner) => (
+                    {carouselData.map((banner) => (
                         <CarouselItem key={banner.id}>
                             <div className="relative h-[500px] w-full overflow-hidden">
                                 <Image
@@ -125,12 +130,34 @@ export default function BannerCarousel() {
                                 <div className="absolute inset-0 flex flex-col items-center justify-center p-6 text-white bg-black/40">
                                     <h2 className="mb-4 text-4xl font-bold md:text-5xl">{banner.title}</h2>
                                     <p className="mb-8 text-xl md:text-2xl">{banner.description}</p>
-                                    <Button
-                                        variant="outline"
-                                        className="text-black transition-colors border-white hover:bg-white"
-                                    >
-                                        Khám phá ngay
-                                    </Button>
+                                    <Form {...form}>
+                                        <form
+                                            onSubmit={form.handleSubmit(onSubmit)}
+                                            className="flex w-full max-w-md gap-2"
+                                        >
+                                            <FormField
+                                                control={form.control}
+                                                name="query"
+                                                render={({ field }) => (
+                                                    <FormItem className="flex-1">
+                                                        <FormControl>
+                                                            <Input
+                                                                placeholder="Tìm kiếm bài viết..."
+                                                                {...field}
+                                                                className="text-black bg-white"
+                                                                onFocus={handleInputFocus}
+                                                                onBlur={handleInputBlur}
+                                                            />
+                                                        </FormControl>
+                                                        <FormMessage />
+                                                    </FormItem>
+                                                )}
+                                            />
+                                            <Button type="submit" disabled={isLoading}>
+                                                {isLoading ? "Đang tìm..." : "Tìm"}
+                                            </Button>
+                                        </form>
+                                    </Form>
                                 </div>
                             </div>
                         </CarouselItem>
@@ -138,7 +165,7 @@ export default function BannerCarousel() {
                 </CarouselContent>
                 <CarouselPrevious className="z-10 text-white border-none left-4 bg-white/20 hover:bg-white/40" />
                 <CarouselNext className="z-10 text-white border-none right-4 bg-white/20 hover:bg-white/40" />
-                <CarouselDots banners={banners} carouselApi={carouselApi} />
+                <CarouselDots banners={carouselData} carouselApi={carouselApi} />
             </Carousel>
         </div>
     )
